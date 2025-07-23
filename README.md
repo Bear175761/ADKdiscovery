@@ -1,3 +1,20 @@
+---
+marp: true
+theme: default
+class: invert
+size: 16:9
+style: |
+  img {background-color: transparent!important;}
+  a:hover, a:active, a:focus {text-decoration: none;}
+  header a {color: #ffffff !important; font-size: 30px;}
+  footer {color:rgb(255, 255, 255);}
+header: '[&#9671;](#1 " ")'
+footer: 'Accenture 2025'
+---
+<!-- paginate: true -->
+<!-- backgroundImage: "linear-gradient(to bottom,rgb(161, 0, 255),rgb(136, 0, 141))" -->
+<!-- color: white -->
+
 # Team Needs
 In order to adopt an ADK system people on the team will need to adopt some of these key skills
 - Python and software development basics: (Minimal python knowledge is required in order to write agent prompts.)
@@ -7,6 +24,8 @@ In order to adopt an ADK system people on the team will need to adopt some of th
 - Documentation understanding
 - Understanding of web for A2A servers.
 - Understanding of websocket and live audio streaming for gemini live implementations.
+
+---
 
 **Study guide for ADK & A2A python**
 *Prompt developer*
