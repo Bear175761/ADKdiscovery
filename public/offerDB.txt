@@ -1,0 +1,89 @@
+ID: 1001
+Product Name: GalaxySound Wireless Earbuds
+Category: Audio
+Description: True wireless earbuds with active noise cancellation and 30-hour battery life.
+Original Price: $129.99
+Discounted Price: $79.99
+Offer Validity: 2025-07-15
+Stock: In Stock
+
+ID: 1002
+Product Name: UltraView 55" 4K Smart TV
+Category: Televisions
+Description: 55-inch UHD Smart TV with HDR10+ and built-in voice assistant.
+Original Price: $699.99
+Discounted Price: $499.99
+Offer Validity: 2025-07-20
+Stock: Limited Stock
+
+ID: 1003
+Product Name: ApexBook Pro 14
+Category: Laptops
+Description: Lightweight laptop with Intel i7, 16GB RAM, and 1TB SSD.
+Original Price: $1199.00
+Discounted Price: $999.00
+Offer Validity: 2025-07-10
+Stock: In Stock
+
+ID: 1004
+Product Name: VoltMax Fast Charger 60W
+Category: Accessories
+Description: Dual USB-C fast charger with smart power distribution.
+Original Price: $39.99
+Discounted Price: $24.99
+Offer Validity: 2025-08-01
+Stock: In Stock
+
+ID: 1005
+Product Name: PixelPro 12 Smartphone
+Category: Mobile Phones
+Description: Latest Android 14 flagship with 108MP camera and 5G connectivity.
+Original Price: $899.99
+Discounted Price: $749.99
+Offer Validity: 2025-07-25
+Stock: Pre-Order
+
+ID: 1006
+Product Name: StreamMate 4K Media Hub
+Category: Streaming Devices
+Description: Android TV box with 4K streaming and voice control remote.
+Original Price: $79.99
+Discounted Price: $59.99
+Offer Validity: 2025-07-18
+Stock: In Stock
+
+ID: 1007
+Product Name: SoundBar Elite X200
+Category: Audio
+Description: 2.1 channel soundbar with wireless subwoofer and Bluetooth.
+Original Price: $249.99
+Discounted Price: $179.99
+Offer Validity: 2025-07-22
+Stock: In Stock
+
+ID: 1008
+Product Name: GamerCore RTX Edition Desktop
+Category: Desktops
+Description: Gaming PC with Ryzen 7, RTX 4070, and 32GB DDR5 RAM.
+Original Price: $1899.00
+Discounted Price: $1599.00
+Offer Validity: 2025-07-30
+Stock: Limited Stock
+
+ID: 1009
+Product Name: WatchTime Active Gen 4
+Category: Wearables
+Description: Fitness smartwatch with heart rate monitor and GPS.
+Original Price: $199.99
+Discounted Price: $129.99
+Offer Validity: 2025-07-12
+Stock: In Stock
+
+ID: 1010
+Product Name: MaxDrive External SSD 2TB
+Category: Storage
+Description: High-speed USB-C SSD with 1050MB/s transfer rate.
+Original Price: $249.00
+Discounted Price: $189.00
+Offer Validity: 2025-07-28
+Stock: In Stock
