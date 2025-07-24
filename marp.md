@@ -10,10 +10,16 @@ style: |
   footer {color:rgb(255, 255, 255);}
 header: '[&#9671;](#1 " ")'
 footer: 'Accenture 2025'
+paginate: true
 ---
-<!-- paginate: true -->
 <!-- backgroundImage: "linear-gradient(to bottom,rgb(161, 0, 255),rgb(136, 0, 141))" -->
 <!-- color: white -->
+
+<!-- _class: lead -->
+# This is a title
+this is a subtitle
+
+---
 
 # This is a very savvy headline
 
