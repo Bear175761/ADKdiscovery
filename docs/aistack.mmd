@@ -1,0 +1,16 @@
+---
+config:
+  theme: forest
+  look: neo
+  layout: dagre
+---
+flowchart TD
+    U["User (Voice/Text)"] --> ADK["ADK Agent"]
+    ADK --> A2A["A2A Protocol"] & Gemini["Gemini Live API"] & n1["MCP"]
+    A2A --> Agents["Other Agents"] & ADK
+    ADK -- Response --> U
+    n1 --> ADK & Data["External Data"]
+    Data --> n1
+    Gemini --> ADK
+     ADK:::Pine
+    classDef Pine stroke-width:1px, stroke-dasharray:none, stroke:#254336, fill:#27654A, color:#FFFFFF
