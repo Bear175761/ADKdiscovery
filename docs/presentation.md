@@ -33,10 +33,6 @@ Presented By: Bear BlinSchauer
 - Gemini Live API
 - Model Context Protocol (MCP)
 - Putting It All Together: Demo Walkthrough
-- ADK in-depth
-- A2A in-depth
-- Gemini live in-depth
-- MCP in-depth
 - Deployment & Operations
 - Final thoughts, Team Learning
 
@@ -60,7 +56,7 @@ Presented By: Bear BlinSchauer
 - **Faster, smarter customer service:** Automate and enhance IVR (Interactive Voice Response) systems with advanced AI.
 - **Interoperability:** Open standards (A2A/MCP) allow agents from different vendors and platforms to work together.
 - **Real-time, multimodal:** Gemini Live enables natural, low-latency voice and text interactions.
-- **SWE Approach to building Agents:** Higher flexibility and design control.
+- **SWE Approach** Higher flexibility and design control. Faster iteration.
 
 ---
 
@@ -87,7 +83,7 @@ Presented By: Bear BlinSchauer
 
 ---
 
-## Agentic AI Stack
+## Google's Agentic AI IVR Stack
 - ADK: builds the agents, like a customer service bot.
 - A2A: enables teamwork, allowing the bot to escalate issues to a billing agent built on adiferent platform
 - Gemini Live: Acts as a layer to convert human speech into usable AI tokens in real time.
@@ -98,38 +94,16 @@ Presented By: Bear BlinSchauer
 ---
 ## How this all works together
 
+*{Put a diagram of how all of the components will work together here.}* 
+
 ![](./aistack..svg)
 
----
 
+---
 <!-- _class: lead -->
 
 # Agent Development Kit (ADK)
-
-- Definition
-- Compare to dialogflowcx.
-
-# Agent to Agent Protocol (A2A)
-
-# Gemini live API
-
-
-
-- Introduction & Executive Summary
-- Architecture Overview
-- Agent Development Kit (ADK) [to slide 1](./presentation.html#1)
-- Agent To Agent Protocol (A2A)
-- Gemini Live API
-3 Putting It All Together: Demo Walkthrough
-# ADK in-depth
 *Google’s Toolkit for Building AI Assistants*
-
----
-
-<!--_id:intro-->
-**Docs**
-- https://google.github.io/adk-docs/
-- https://github.com/google/adk-samples
 
 ---
 
@@ -142,40 +116,91 @@ ADK is …
 - Deployment Agnostic
 - Interoperable with other technolgy
 
-With recent innovations ADK is beginning to add support for live voice via the **Gemini Live** API
+---
+
+## What ADK can do
+ADK is a technology which can be used in order to configure agents in a SWE oriented fashion. ADK allows the creation of agentic AI driven agents with the ability to be integreted into systems such as IVR. ADK offers team high flexibility in building new AI agents.
+
+---
+
+## ADK core capabilities
+
+- Orchestration
+- Multiple subagents (No A2A needed)
+- Tools
+- Deployment: Integrated with google CI (Agent Engine).
+- Testing: ADK provides test framework for testing agents.
+- Security: Can sanatize user inputs via callbacks.
+
+---
+
+**Implementing Capabilities:**
+- Orchestration works via the llm decisions by multi-agents during execution or by the decisions of developers. ADK uses the sequential, loop and parallel agent types to manage orchestration.
+- Tools work via python functions. Agents will read the docstrings attached to python functions in order to understand how to interface with these functions. Additionally users have access to a tool ecosystem maintained by google. 
+- Developers define the core behaviour and logic via agent prompts (similar to playbooks) and python methods.
+- Manage agent lifecycles, state, and memory. ADK offers short term session state memory and long term knowledge options
+- Integrate agents with data. ADK has some built in functions to deal with MCP.
+- Safety Input and tool argument guardrails with before_model_callback and before_tool_callback
+    Both of these are really simple callback functions which are supplied tool calling context or response context to filter out responses which the team would like to avoid. ADK wil look for an additional optional response for each failed sanitization check.
+    While by default this approach favors regex, using an additional llm with the google.genai library could also work very well.
+---
+
+## ADK SDK
+
+- ADK provides developers with a rich SDK. The ADK SDK consists of a well documented API.
+- During playbook development a simple web UI is already provided for testing agents.
+
+---
+
+## ADK compared to dialogflow playbooks
+
+ADK works in a very similar manner to dialogflow agents but there are some differences
+- An ADK agent powered by an llm is analagous to a playbook.
+- Developers will handle additional routing on their own with python.
+- Compared to playbooks, as of now playbooks does not have examples capabilities. Developers will need to introduce few shot prompting instead.
+- ADK does not handle NLU intent detection.
+
+---
+# ADK in-depth
+
+---
+
+**Docs**
+- https://google.github.io/adk-docs/
+- https://github.com/google/adk-samples
 
 ADK examples can be found in the agent garden in GCP.
 
-## Tools & Capabilities in the ADK SDK
-The ADK sdk contains a library for development as well as a pre-built web front-end to quickly test & ADK bot interaction.
+---
 
-**Capabilities:**
-- Define core behaviour and logic via agent instructions (similar to playbooks)
-- Manage agent lifecycles, state, and memory. ADK offers short term session state memory and long term knowledge options)
-- Integrate built ADK agent with tools. (These can be python functions or a variety of built in tools offered by google.)
-- Integrate agents with data. ADK has some built in functions to deal with MCP.
-- Orchestrate multi-agent workflows. (agent teams) ADK can create sequential, loop and parallel agent execution.
-- Safety Input and too argumetn guardrails with before_model_callback and before_tool_callback
-    Both of these are really simple callback functions which are supplied tool calling context or response context to filter out responses which the team would like to avoid. ADK wil look for an additional optional response for each failed sanitization check.
-    While by default this approach favors regex, using an additional llm with the google.genai library could also work very well.
+With recent innovations ADK is beginning to add support for live voice via the **Gemini Live** API
 
 In order to use arbitrary models along with gemini, ADK utilizes the LiteLLM library.
 
 Agents can act as powerful reasoning skill agents or determenistic routing agents depending on the context. Determenistic agents are called workflow agents.
 
+---
+
 ### Key Ideas
-- Session management: 
-    - Context is the session
-    - History is a log of chat events
-    - State represents agents working memory
-- Events: 
-    - Basic units of data representing conversation flow. (reply, user messaged, tool use) Together events will form the conversation history.
+- Agent: Worker unit for tasks
 - Tools:
     - Tools can be either python functions or tools built into ADK by google. 
     - AIs have the option to use google search without any extra setup which is a powerful way to easily make more accurate responses. 
     - Documentation strings are essential to creating a tool in ADK. The bots will be reading these strings in order to determine how to interface with them.
 - Callbacks:
     - Functions which can be called before or after a agent, model interation, or tool use. These callbacks are given the agent context and can be used for logging and sanitization. 
+- Session management: 
+    - Context is the session
+    - History is a log of chat events
+    - State represents agents working memory
+- Events: 
+    - Basic units of data representing conversation flow. (reply, user messaged, tool use) Together events will form the conversation history.
+
+---
+
+### Key Ideas Cont.
+
+---
 
 ### Important Data Types, Classes and Functions
 - Callbacks: custom code snippets written into points in the agents process allowing for checks, logging or behavior modifications. set the callback in agent initialization, -> before_model_callback=block_keyword_guardrail
@@ -204,6 +229,20 @@ Deploying to cloud is essential to building the agent. Google offers many differ
 Agents are accesible through a specialized agent engine UI 
 
 https://google.github.io/adk-docs/deploy/agent-engine/
+
+
+
+# Agent to Agent Protocol (A2A)
+
+# Gemini live API
+
+# Demo Walkthrough
+
+# Getting accustomed to the ADK development environment
+
+
+
+3 Putting It All Together: Demo Walkthrough
 
 
 # A2A in-depth
@@ -380,8 +419,72 @@ Here is a Diagram of a possible agent stack.
 
 # Deployment & Operations
 
-# Final thoughts, Team Learning
-In order to adopt an ADK system people on the team will need to adopt some of these key skills
+# Team Learning, Final thoughts
+
+---
+<!-- _class: lead -->
+
+# Team Learning
+
+In order to adopt an ADK system people on the team will need to adopt some key skills and be able to adapt to a software driven workstream.
+
+---
+
+- **Git:** Using git will be a required skill for any software driven project. In order to avoid conflicts git basics and best practices are advised to take into consideration. 
+- **Python:** (Minimal python knowledge is required to write agent prompts)
+    - Python basics: variables, math, dictionaries etc.
+    - Python classes. (OOP design)
+    - Asyncronous python
+- **JSON:** Neededed to write agent cards.
+- **Web:** Need to understand API basics and websocket for streaming. (Gemini live/ A2A).
+- 
+
+---
+<!-- _class: lead -->
+
+## Creating a development environment.
+
+---
+
+---
+<!-- _class: lead -->
+
+# Final Thoughts
+
+As we’ve explored today, Google’s Agent Development Stack—comprising ADK, A2A, MCP, and the Gemini Live API—represents a powerful shift in how we build, deploy, and scale intelligent agents.
+
+---
+
+## Key reflections
+
+- Modular by Design: Each component is purpose-built but interoperable, enabling flexible, scalable agent architectures.
+- Open Standards: Protocols like A2A and MCP are paving the way for cross-platform, multi-agent collaboration.
+- Voice-First: Gemini Live and ADK bring real-time, multimodal interaction to the forefront of customer experience.
+- Developer-Centric: With Python-first SDKs, callback hooks, and CI/CD support, this stack empowers engineers to build with precision and control.
+
+---
+
+# Thank You
+Let’s continue exploring, building, and learning together.
+Questions? Ideas? Let’s talk.
+
+---
+
+# Extra Notes
+
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+
 - Python and software development basics: (Minimal python knowledge is required in order to write agent prompts.)
 - Command line basics (to set up adk testing servers)
 - Google cloud console and ADK deployment.
@@ -403,5 +506,4 @@ In order to adopt an ADK system people on the team will need to adopt some of th
 - Basics of python classes. (Classes are templates for objects, objects are groupings of function and variable data.)
 - Intermediate classes knowledge, inheritance, writing classes, factory methods.
 
-# Extra notes
 
